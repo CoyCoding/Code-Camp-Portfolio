@@ -18,7 +18,6 @@
   <ul id='navbar' class='navbar'>
     <li><a href="#welcome-section">About</a></li>
     <li><a href="#projects">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -27,8 +26,8 @@
   <h1>FreeCodeCamp Protfolio Site</h1>
 
 </div>
-
-<div id="projects" class="work">
+<div class="body-fill">
+    <div id="projects" class="work">
     <div></div>
   <h2 class="work-header">These are some of my projects..</h2>
   <a href="https://codepen.io/anon/pen/QBBYbO" target="_blank" class="project">
@@ -48,8 +47,7 @@
 </div>
 <div id="contact" class="contact">
   <div class="header">
-    <h1>Let's work together...</h1>
-    <p>How do you take your coffee?</p>
+    <h1>Want to contact me?</h1>
   </div>
   <a href="https://facebook.com/" target="_blank" class="contact-details">Facebook</a>
   <a id='profile-link' href="https://github.com/fluffytoycoy" target="_blank" class="contact-details">GitHub</a>
@@ -57,9 +55,10 @@
   <a href="#" class="contact-details">E-Mail</a>
   <a href="#" class="contact-details">Call me</a>
 </div>
-<footer>**This is just a fake portfolio.. All the projects and contact details given are not real..or are they?
-  <p>&copy; Created for <a href="https://www.freecodecamp.com/" target="_blank">FreeCodeCamp</a></p>
-</footer>
-       
+
+    <footer>**This is just a fake portfolio.. All the projects and contact details given are not real..or are they?
+        <p>&copy; Created for <a href="https://www.freecodecamp.com/" target="_blank">FreeCodeCamp</a></p>
+    </footer>
+</div>     
 </body>
 </html>
