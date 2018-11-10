@@ -44,7 +44,7 @@
 
 
            //This was for a code challange that takes in 4 numbers and shows if they add up to 24 and how.
-
+           //The function calculate was not writen by me and doesn't account for having more than 4 numbers.
 
             const operators = ['+', '-', '*', '/'];
 
