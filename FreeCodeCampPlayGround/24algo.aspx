@@ -20,55 +20,103 @@
 </body>
     <script>
 
-        $('#24').bind('click', e => {
-            e.preventDefault();
-            var numStr = $("#permutations").val();
-            removeChildren();
-            displayPermutations(getPermutations(numStr)); 
-        });
-
-        function removeChildren() {
-            $("ul").has("li").empty();
-        }
-
-        function displayPermutations(permArr) {
-            for (index in permArr) {
-                $("ul").append('<li>' + permArr[index]  + '</li>');
-            }
-        }
-
-        function getPermutations(numStr) {
-
-            const digitsArr = numStr.split('');
-
-            //const answers = [];
-
-            const digitPermutations = [];
-            //const operatorPermutations = [];
-
-
-            generateDigitPermutations(digitsArr);
-            //generateOperatorPermutations();
-
-            // interleave();
-
-            return digitPermutations;
-
-            function generateDigitPermutations(digits, permutations = []) {
-                if (!digits.length) {
-                    digitPermutations.push(permutations);
+        $(document).ready(function () {
+            $('#24').bind('click', e => {
+                e.preventDefault();
+                var numStr = $("#permutations").val();
+                removeChildren();
+                if (numStr.trim()) {
+                    var perms = getPermutations(numStr);
+                    console.log(perms.length);
+                    displayPermutations(getPermutations(numStr));
                 }
-                else {
-                    for (let i = 0; i < digits.length; i++) {
-                        const currPerm = digits.slice();
-                        const nextChar = currPerm.splice(i, 1);
-                        
-                        generateDigitPermutations(currPerm.slice(), permutations.concat(nextChar));
+            });
+
+            function removeChildren() {
+                $("ul").has("li").empty();
+            }
+
+            function displayPermutations(permArr) {
+                for (index in permArr) {
+                    $("ul").append('<li>' + permArr + '</li>');
+                }
+            }
+
+            const operators = ['+', '-', '*', '/'];
+
+            function getPermutations(numStr) {
+
+                const digitsArr = numStr.split('');
+
+                const answers = [];
+
+                const digitPermutations = [];
+                const operatorPermutations = [];
+
+
+                generateDigitPermutations(digitsArr);
+                generateOperatorPermutations();
+
+                calculate();
+
+                return answers[0];
+
+                function generateDigitPermutations(digits, permutations = []) {
+                    if (!digits.length) {
+                        digitPermutations.push(permutations);
+                    }
+                    else {
+                        for (let i = 0; i < digits.length; i++) {
+                            const currPerm = digits.slice();
+                            const nextChar = currPerm.splice(i, 1);
+                            generateDigitPermutations(currPerm, permutations.concat(nextChar));
+                        }
+                    }
+                }
+                
+                function generateOperatorPermutations(permutations = []) {
+                    
+                    if (permutations.length === 3) {
+                        operatorPermutations.push(permutations);
+                    }
+                    else {
+                        for (let i = 0; i < operators.length; i++) {
+                            const curr = permutations.slice();
+                            curr.push(operators[i]);
+                            generateOperatorPermutations(curr);
+                        }
+                    }
+                }
+                function calculate() {
+                    for (let i = 0; i < digitPermutations.length; i++) {
+                        for (let j = 0; j < operatorPermutations.length; j++) {
+                            const d = digitPermutations[i];
+                            const o = operatorPermutations[j];
+                            const perm = [
+                                `${d[0]}${o[0]}${d[1]}${o[1]}${d[2]}${o[2]}${d[3]}`,
+                                `(${d[0]}${o[0]}${d[1]})${o[1]}${d[2]}${o[2]}${d[3]}`,
+                                `${d[0]}${o[0]}(${d[1]}${o[1]}${d[2]})${o[2]}${d[3]}`,
+                                `${d[0]}${o[0]}${d[1]}${o[1]}(${d[2]}${o[2]}${d[3]})`,
+                                `${d[0]}${o[0]}(${d[1]}${o[1]}${d[2]}${o[2]}${d[3]})`,
+                                `(${d[0]}${o[0]}${d[1]}${o[1]}${d[2]})${o[2]}${d[3]}`,
+                                `(${d[0]}${o[0]}${d[1]})${o[1]}(${d[2]}${o[2]}${d[3]})`
+                            ];
+
+                            perm.forEach(combination => {
+                                const res = eval(combination);
+
+                                if (res === 24) {
+                                    return answers.push(combination);
+                                }
+                            });
+                        }
                     }
                 }
             }
-        }
 
+
+
+        });
    
     </script>
 </html>
