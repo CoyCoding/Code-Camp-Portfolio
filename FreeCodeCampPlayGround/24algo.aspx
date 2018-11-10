@@ -27,7 +27,7 @@
                 removeChildren();
                 if (numStr.trim()) {
                     var perms = getPermutations(numStr);
-                    console.log(perms.length);
+                    console.log(perms[0].length);
                     displayPermutations(getPermutations(numStr));
                 }
             });
@@ -37,10 +37,14 @@
             }
 
             function displayPermutations(permArr) {
-                for (index in permArr) {
+                for (index in permArr[0]) {
                     $("ul").append('<li>' + permArr + '</li>');
                 }
             }
+
+
+           //This was for a code challange that takes in 4 numbers and shows if they add up to 24 and how.
+
 
             const operators = ['+', '-', '*', '/'];
 
