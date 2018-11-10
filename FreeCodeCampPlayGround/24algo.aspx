@@ -10,6 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <input id="permutations" type="text" name="permutations" />
             <button id="24"class="24">TEST</button>
         </div>
         <ul>
@@ -21,51 +22,48 @@
 
         $('#24').bind('click', e => {
             e.preventDefault();
-            var numStr = "1234"
+            var numStr = $("#permutations").val();
             removeChildren();
-
-            setTimeout(function () {
-                solve24(numStr);
-            }, 3000);
-            
+            displayPermutations(getPermutations(numStr)); 
         });
 
-        function removeChildren(DOMelement) {
+        function removeChildren() {
             $("ul").has("li").empty();
-            alert("empty")
         }
 
+        function displayPermutations(permArr) {
+            for (index in permArr) {
+                $("ul").append('<li>' + permArr[index]  + '</li>');
+            }
+        }
 
-        function solve24(numStr) {
+        function getPermutations(numStr) {
 
             const digitsArr = numStr.split('');
 
-            const answers = [];
+            //const answers = [];
 
             const digitPermutations = [];
-            const operatorPermutations = [];
+            //const operatorPermutations = [];
 
 
             generateDigitPermutations(digitsArr);
             //generateOperatorPermutations();
-            for (index in digitPermutations) {
-                $("ul").append('<li>' + digitPermutations[index]  + '</li>');
-            }
+
             // interleave();
-            return true;
+
+            return digitPermutations;
 
             function generateDigitPermutations(digits, permutations = []) {
-                if (digits.length === 0) {
-
+                if (!digits.length) {
                     digitPermutations.push(permutations);
-
                 }
                 else {
                     for (let i = 0; i < digits.length; i++) {
-                        const curr = digits.slice();
-                        const next = curr.splice(i, 1);
+                        const currPerm = digits.slice();
+                        const nextChar = currPerm.splice(i, 1);
                         
-                        generateDigitPermutations(curr.slice(), permutations.concat(next));
+                        generateDigitPermutations(currPerm.slice(), permutations.concat(nextChar));
                     }
                 }
             }
