@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="24algo.aspx" />
     <Content Include="Content\profile.css" />
     <Content Include="FCCProfile.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -78,6 +79,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="24algo.aspx.cs">
+      <DependentUpon>24algo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="24algo.aspx.designer.cs">
+      <DependentUpon>24algo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FCCProfile.aspx.cs">
       <DependentUpon>FCCProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

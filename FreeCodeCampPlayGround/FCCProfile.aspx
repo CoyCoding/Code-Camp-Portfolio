@@ -17,6 +17,7 @@
 <nav>
   <ul id='navbar' class='navbar'>
     <li><a href="#welcome-section">About</a></li>
+    <li><a href="24algo.aspx">Algo</a></li>
     <li><a href="#projects">Work</a></li>
   </ul>
 </nav>
