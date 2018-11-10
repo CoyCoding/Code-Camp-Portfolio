@@ -44,7 +44,7 @@
             function addToStart() {
                 var item = $('#dataToAdd').val();
                 if (!startArr(item)) {
-                    displayArr = [item].concat(displayArr);
+                    displayArr.unshift(item);
                 }
             }
 
